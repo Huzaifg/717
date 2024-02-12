@@ -1,0 +1,248 @@
+\documentclass[a4paper,notitlepage,cs4size,cap,indent,oneside,12pt]{article}
+
+\usepackage{graphicx,afterpage}
+%\usepackage[pdf]{pstricks}
+\usepackage{bm}\usepackage{soul}
+\usepackage{empheq}\usepackage{mathtools}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{mathrsfs,color}
+\usepackage{amsfonts}\usepackage{multirow}
+\usepackage{amssymb}\usepackage{caption,comment}
+\usepackage{amsmath}\usepackage{float}
+\usepackage{amssymb,amsthm}
+\usepackage{graphicx,afterpage,cancel}
+\usepackage{epstopdf}
+\newcommand{\rmd}{\mathrm{d}}
+\newcommand{\rmi}{\mathrm{i}}
+\DeclareMathOperator*{\argmax}{argmax}
+%\usepackage[dvipdfm,colorlinks,linkcolor=blue,citecolor=blue]{hyperref}
+\def\Xint#1{\mathchoice
+{\XXint\displaystyle\textstyle{#1}}%
+{\XXint\textstyle\scriptstyle{#1}}%
+{\XXint\scriptstyle\scriptscriptstyle{#1}}%
+{\XXint\scriptscriptstyle\scriptscriptstyle{#1}}%
+\!\int}
+\def\XXint#1#2#3{{\setbox0=\hbox{$#1{#2#3}{\int}$ }
+\vcenter{\hbox{$#2#3$ }}\kern-.6\wd0}}
+\def\ddashint{\Xint=}
+\def\dashint{\Xint-}
+%% New packages
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\usepackage[pdftex,colorlinks=true]{hyperref}
+%\usepackage[dvipdfm,colorlinks]{hyperref}
+\hypersetup{CJKbookmarks,%
+bookmarksnumbered,%
+colorlinks,%
+linkcolor=black,%
+citecolor=black,%
+plainpages=false,%
+pdfstartview=FitH}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\def\theequation{\arabic{section}.\arabic{equation}}
+\newcommand\tabcaption{\def\@captype{table}\caption}
+\def\thefigure{\arabic{section}.\arabic{figure}}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{corollary}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{opro}[thm]{Open problem}
+\newtheorem{aspt}[thm]{Assumption}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{example}[thm]{Example}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{assumption}[theorem]{Assumption}
+\renewcommand{\abstractname}{Summary}
+\definecolor{orange}{RGB}{255,127,0}
+\newcommand{\orange}{\color{orange}}
+\newcommand{\blue}{\color{blue}}
+\newcommand{\red}{\color{red}}
+\newcommand{\green}{\color{green}}
+\newcommand{\magenta}{\color{magenta}}
+\newcommand{\e}{\varepsilon}
+\newcommand{\cov}{\mbox{cov}}\def\d{{\, \rm d}}
+\newcommand{\smallersize}{\fontsize{8pt}{11pt}\selectfont}
+
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\innp}[1]{\left\langle #1 \right\rangle}
+\newcommand{\bdot}[1]{\mathbf{\dot{ #1 }}}
+\newcommand{\OPT}{\operatorname{OPT}}
+\newcommand{\mA}{\mathbf{A}}
+\newcommand{\mP}{\mathbf{P}}
+\newcommand{\mLambda}{\mathbf{\Lambda}}
+\newcommand{\ones}{\mathds{1}}
+\newcommand{\zeros}{\textbf{0}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vp}{\mathbf{p}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\cx}{\mathcal{X}}
+\newcommand{\cy}{\mathcal{Y}}
+\newcommand{\cc}{\mathcal{C}}
+\newcommand{\cz}{\mathcal{Z}}
+\newcommand{\vxh}{\mathbf{\hat{x}}}
+\newcommand{\vyh}{\mathbf{\hat{y}}}
+\newcommand{\vzh}{\mathbf{\hat{z}}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vA}{\mathbf{A}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vvh}{\mathbf{\hat{v}}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vg}{\mathbf{g}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vub}{\overline{\mathbf{u}}}
+\newcommand{\vuh}{\hat{\mathbf{u}}}
+\newcommand{\veta}{\bm{\eta}}
+\newcommand{\vetah}{\bm{\hat{\eta}}}
+\newcommand{\defeq}{\stackrel{\mathrm{\scriptscriptstyle def}}{=}}
+\newcommand{\etal}{\textit{et al}.}
+\newcommand{\tnabla}{\widetilde{\nabla}}
+\newcommand{\tE}{\widetilde{E}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}} 
+\newcommand{\inner}[2]{\langle#1,#2\rangle}
+
+\afterpage{\clearpage}
+% images used in this paper are: ccpfdomain.jpg and sd_domain.jpg
+
+\title{Math 717 Homework \#1}
+\author{}
+\date{}
+\begin{document}
+\maketitle%\tableofcontents
+%\abstract{}
+Due date: Monday, Feb 12, 23:59pm.\medskip
+
+\noindent 1. a) Prove the following result:
+
+For Gaussian variables,
+\begin{equation*}
+    \mathbf{x} = \left(\begin{array}{cc} \mathbf{x}_{\mathbf{1}} \\ \mathbf{x}_{\mathbf{2}} \end{array}\right),\qquad\pmb{\mu} =\left(\begin{array}{cc} \boldsymbol{\mu}_{\mathbf{1}} \\ \boldsymbol{\mu}_{\mathbf{2}} \end{array}\right), \qquad \mathbf{R} = \left(\begin{array}{cc} \mathbf{R}_{\mathbf{11}} & \mathbf{R}_{\mathbf{12}} \\ \mathbf{R}_{\mathbf{21}} & \mathbf{R}_{\mathbf{22}} \end{array}\right),
+\end{equation*}
+The conditional distribution
+\begin{equation*}
+  p(\mathbf{x}_{\mathbf{1}}|\mathbf{x}_{\mathbf{2}}) \sim \mathcal{N}(\overline{\boldsymbol\mu}, \overline{\mathbf{R}})
+\end{equation*}
+where
+\begin{equation*}
+\begin{split}
+  \overline{\boldsymbol{\mu}} &= \boldsymbol{\mu}_{\mathbf{1}} + \mathbf{R}_{\mathbf{12}}\mathbf{R}_{\mathbf{22}}^{-1}(\mathbf{x}_{\mathbf{2}} - \boldsymbol{\mu}_\mathbf{2}),\\
+\overline{\mathbf{R}} &= \mathbf{R}_{\mathbf{11}} - \mathbf{R}_{\mathbf{12}}\mathbf{R}_{\mathbf{22}}^{-1}\mathbf{R}_{\mathbf{21}}
+\end{split}
+\end{equation*}
+
+{\blue
+\noindent 1.
+Although it is possible to use the Bayes theorem and then use the PDF of a multivariate Gaussian distribution and its marginal to prove the result, I will try using a less tedious approach. We know that conditional distribution of multivatiate Gaussian distribution is also Gaussian. Therefore, we need to find the mean and covariance of the conditional distribution to prove the result. Defining a new variable $\vz = x_1 + Mx_2$ where $M = -R_{12}R^{-1}_{22}$. Then, we have the following:
+
+\begin{align*}
+  cov(z,x_2) &= cov(x_1 + Mx_2,x_2)\\
+  &= cov(x_1,x_2) + Mcov(x_2,x_2)\\
+  &= R_{12} - R_{12}R^{-1}_{22}R_{22} \tag{$cov(x_2, x_2) = var(x_2) = R_{22}$}\\
+  &= 0
+\end{align*}
+Therefore, $z$ and $x_2$ are independent. Now,
+
+\begin{align*}
+  E[z] &= E[x_1 + Mx_2]\\
+  &= E[x_1] + ME[x_2]\\
+  &= \mu_1 - R_{12}R^{-1}_{22}\mu_2
+\end{align*}
+Thus,
+\begin{align*}
+  E[x_1|x_2] &= E[z - Mx_2|x_2]\\
+  &= E[z|x_2] - ME[x_2|x_2]\\
+  &= E[z] - Mx_2 \tag{Proved earlier that $z$ and $x_2$ are independent}\\
+  &= \mu_1 - R_{12}R^{-1}_{22}\mu_2 - Mx_2\\
+  &= \mu_1 + R_{12}R^{-1}_{22}(x_2 - \mu_2)
+\end{align*}
+Thus, the mean of the conditional distribution is $\mu_1 + R_{12}R^{-1}_{22}(x_2 - \mu_2)$. Now, we need to find the covariance of the conditional distribution. We have the following:
+
+\begin{align*}
+  var(x_1|x_2) &= var(z - Mx_2|x_2)\\
+  &= var(z|x_2) + var(Mx_2|x_2) - Mcov(z,-x_2|x_2) - M^Tcov(z,-x_2|x_2)\\
+  &= var(z|x_2)\\
+  &= var(z)
+  &= var(x_1 + Mx_2)\\
+  &= var(x_1) + M M^T var(x_2) + Mcov(x_1,x_2) + cov(x_1,x_2)M^T\\
+  &= R_{11} + R_{12}R^{-1}_{22}R_{22}R^{-1}_{22}R_{21} - R_{12}R^{-1}_{22}R_{21} - R_{12}R^{-1}_{22}R_{21}\\
+  &= R_{11} - R_{12}R^{-1}_{22}R_{21}
+\end{align*}
+Thus proved. \\
+}
+b) Let
+\begin{equation*}
+    \mathbf{x} = \left(\begin{array}{cc} \mathbf{x}_{\mathbf{1}} \\ \mathbf{x}_{\mathbf{2}} \end{array}\right),\qquad\pmb{\mu} =\left(\begin{array}{cc} 0 \\ 0 \end{array}\right), \qquad \mathbf{R} = \left(\begin{array}{cc} 1 & 0.5 \\ 0.5 & 1 \end{array}\right).
+\end{equation*}
+Generate $N$ random numbers from such a 2-dimensional joint Gaussian distribution. Each random number has two components. Collect all those points of $x_1$, where the corresponding $x_2$ satisfies $0.9<x_2<1.1$. Use these $x_1$ to approximate $p(x_1|x_2 = 1)$. Show your codes and numerical results with $N= 10^3, 10^4$ and $10^5$. What is the $95\%$ confidence interval for the case with different $N$?\medskip
+
+{\blue
+\noindent 2.
+\begin{verbatim}
+Number of samples: 1000
+Sample mean: 0.656718959149455, Sample variance: 0.8062171898943502
+95% confidence interval: [0.6010667897694736, 0.7123711285294364]
+Number of samples: 10000
+Sample mean: 0.4879822529009277, Sample variance: 0.7835056717755626
+95% confidence interval: [0.47063314517547683, 0.5053313606263786]
+Number of samples: 100000
+Sample mean: 0.49615209990224923, Sample variance: 0.7292890627894959
+95% confidence interval: [0.49085905081536924, 0.5014451489891293]
+\end{verbatim}
+
+Code can be found in the file \texttt{1b.py}. 
+
+}
+
+\noindent 2. Show an example (either analytic solution or numerical solution) of a 2-dimensional continuous distribution $p(x,y)$, where the conditional distribution $p(x|y)$ is Gaussian but the joint distribution is non-Gaussian.\medskip
+
+{\blue
+\noindent 3.
+Consider the following joint distribution:
+\begin{equation*}
+  p(x,y) = \frac{1}{2\pi}e^{-\frac{x^2 + y^2}{2}}
+\end{equation*}
+The marginal distribution of $x$ is
+\begin{equation*}
+  p(x) = \int_{-\infty}^{\infty} p(x,y) dy = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}
+\end{equation*}
+The conditional distribution of $x$ given $y$ is
+\begin{equation*}
+  p(x|y) = \frac{p(x,y)}{p(y)} = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}
+\end{equation*}
+which is Gaussian. However, the joint distribution is non-Gaussian. 
+}
+
+\noindent 3. Use Monte Carlo simulation with $N$ samples to compute
+\begin{equation*}
+  \int_{x=0}^{x=1}\int_{y=0}^{y=2} e^x y^x dx dy
+\end{equation*}
+The number $N$ is chosen such that the estimator has an error equaling to $\pm0.05$ that corresponds to the $95\%$ confidence interval.
+
+{\blue
+
+\noindent 3. When you run the code \texttt{3.py}, you will get the following output:
+\begin{verbatim}
+Number of samples: 1000
+Sample mean: 1.7058216281267826, Sample variance: 0.8848028963896307
+Confidence interval: 0.05830144772448112
+Integral: 3.4116432562535652
+Number of samples: 2000
+Sample mean: 1.6584173097694106, Sample variance: 0.8136295573753674
+Confidence interval: 0.0395325138816975
+Integral: 3.316834619538821
+
+\end{verbatim}
+}
+\end{document}
