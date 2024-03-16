@@ -1,0 +1,244 @@
+\documentclass[a4paper,notitlepage,cs4size,cap,indent,oneside,12pt]{article}
+\usepackage{graphicx,afterpage}
+%\usepackage[pdf]{pstricks}
+\usepackage{bm}\usepackage{soul}
+\usepackage{empheq}\usepackage{mathtools}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{mathrsfs,color}
+\usepackage{amsfonts}\usepackage{multirow}
+\usepackage{amssymb}\usepackage{caption,comment}
+\usepackage{amsmath}\usepackage{float}
+\usepackage{amssymb,amsthm}
+\usepackage{graphicx,afterpage,cancel}
+\usepackage{epstopdf}
+\newcommand{\rmd}{\mathrm{d}}
+\newcommand{\rmi}{\mathrm{i}}
+\DeclareMathOperator*{\argmax}{argmax}
+%\usepackage[dvipdfm,colorlinks,linkcolor=blue,citecolor=blue]{hyperref}
+\def\Xint#1{\mathchoice
+{\XXint\displaystyle\textstyle{#1}}%
+{\XXint\textstyle\scriptstyle{#1}}%
+{\XXint\scriptstyle\scriptscriptstyle{#1}}%
+{\XXint\scriptscriptstyle\scriptscriptstyle{#1}}%
+\!\int}
+\def\XXint#1#2#3{{\setbox0=\hbox{$#1{#2#3}{\int}$ }
+\vcenter{\hbox{$#2#3$ }}\kern-.6\wd0}}
+\def\ddashint{\Xint=}
+\def\dashint{\Xint-}
+%% New packages
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\usepackage[pdftex,colorlinks=true]{hyperref}
+%\usepackage[dvipdfm,colorlinks]{hyperref}
+\hypersetup{CJKbookmarks,%
+bookmarksnumbered,%
+colorlinks,%
+linkcolor=black,%
+citecolor=black,%
+plainpages=false,%
+pdfstartview=FitH}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\def\theequation{\arabic{section}.\arabic{equation}}
+\newcommand\tabcaption{\def\@captype{table}\caption}
+\def\thefigure{\arabic{section}.\arabic{figure}}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{corollary}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{opro}[thm]{Open problem}
+\newtheorem{aspt}[thm]{Assumption}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{example}[thm]{Example}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{assumption}[theorem]{Assumption}
+\renewcommand{\abstractname}{Summary}
+\definecolor{orange}{RGB}{255,127,0}
+\newcommand{\orange}{\color{orange}}
+\newcommand{\blue}{\color{blue}}
+\newcommand{\red}{\color{red}}
+\newcommand{\green}{\color{green}}
+\newcommand{\magenta}{\color{magenta}}
+\newcommand{\e}{\varepsilon}
+\newcommand{\cov}{\mbox{cov}}\def\d{{\, \rm d}}
+\newcommand{\smallersize}{\fontsize{8pt}{11pt}\selectfont}
+
+
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\innp}[1]{\left\langle #1 \right\rangle}
+\newcommand{\bdot}[1]{\mathbf{\dot{ #1 }}}
+\newcommand{\OPT}{\operatorname{OPT}}
+\newcommand{\mA}{\mathbf{A}}
+\newcommand{\mP}{\mathbf{P}}
+\newcommand{\mLambda}{\mathbf{\Lambda}}
+\newcommand{\ones}{\mathds{1}}
+\newcommand{\zeros}{\textbf{0}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vp}{\mathbf{p}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\cx}{\mathcal{X}}
+\newcommand{\cy}{\mathcal{Y}}
+\newcommand{\cc}{\mathcal{C}}
+\newcommand{\cz}{\mathcal{Z}}
+\newcommand{\vxh}{\mathbf{\hat{x}}}
+\newcommand{\vyh}{\mathbf{\hat{y}}}
+\newcommand{\vzh}{\mathbf{\hat{z}}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vA}{\mathbf{A}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vvh}{\mathbf{\hat{v}}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vg}{\mathbf{g}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vub}{\overline{\mathbf{u}}}
+\newcommand{\vuh}{\hat{\mathbf{u}}}
+\newcommand{\veta}{\bm{\eta}}
+\newcommand{\vetah}{\bm{\hat{\eta}}}
+\newcommand{\defeq}{\stackrel{\mathrm{\scriptscriptstyle def}}{=}}
+\newcommand{\etal}{\textit{et al}.}
+\newcommand{\tnabla}{\widetilde{\nabla}}
+\newcommand{\tE}{\widetilde{E}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}} 
+\newcommand{\inner}[2]{\langle#1,#2\rangle}
+
+\afterpage{\clearpage}
+% images used in this paper are: ccpfdomain.jpg and sd_domain.jpg
+
+\title{Math 717 Homework \#2}
+\author{}
+\date{}
+\begin{document}
+\maketitle%\tableofcontents
+%\abstract{}
+Due date: Monday, March 4th, 23:59pm.\medskip
+
+\noindent 1. Consider a process with state space $S = \{1, 2, 3\}$, initial distribution $\alpha = (\frac{1}{3}, \frac{1}{3}, \frac{1}{3})$,
+and transition matrix
+\begin{equation*}
+\left(
+  \begin{array}{ccc}
+    0 & \frac{1}{3} & \frac{2}{3} \\
+    \frac{1}{2} & \frac{1}{2} & 0 \\
+    \frac{1}{4} & \frac{1}{2} & \frac{1}{4} \\
+  \end{array}
+\right)
+\end{equation*}
+a) Construct a Markov Chain with length $N=10000$ and plot it. Attach your code.\\
+b) Use the above transition matrix to compute the equilibrium distribution.\\
+c) Use the Markov Chain obtained from Part a) to validate your result in Part b).\\
+
+{\blue
+\noindent Solution: \\
+a) The code is attached. The plot for 10000 is shown below.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.\textwidth]{../1a_10000.png}
+  \caption{Markov Chain with length 10000}
+\end{figure}
+This plot however does not say much, I thus also plotted for $N = 1000$. See below
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.\textwidth]{../1a_1000.png}
+  \caption{Markov Chain with length 1000}
+\end{figure}
+
+b) The equilibrium distribution is the eigenvector of the transition matrix corresponding to the eigenvalue 1. Computing this we get the equilibrium distribution as:
+\begin{equation*}
+\left(
+  \begin{array}{c}
+    \frac{1}{3} \\
+    \frac{1}{3} \\
+    \frac{1}{3} \\
+  \end{array}
+\right)
+\end{equation*}
+
+c) The code for comparing the equilibrium distribution is attached. Given below is the absolute difference error between the computed equilibrium distribution and the one obtained from the Markov Chain:
+\begin{verbatim}
+  Actual equilibrium distribution: [0.33333333 0.33333333 0.33333333]
+  Simulated equilibrium distribution: [0.2886 0.4487 0.2627]
+  Absolute difference error: [0.04473333 0.11536667 0.07063333]
+\end{verbatim}
+Surprisingly, I find that the simulated equilibrium distribution is not very close to the actual equilibrium distribution. I even increase the number of samples to $N = 1000000$ and still find that the simulated equilibrium distribution is not very close to the actual equilibrium distribution. I am not sure why this is the case.\\
+}
+
+\noindent 2. a) Consider the two-state Markov jump process as in the lecture notes (page 31). Given the switching rate $\mu$ and $\nu$, prove the formulae of the switching time and the expectation.\\
+b) Choose two arbitrary real numbers as the values of the two states, respectively. Simulate a long trajectory to numerically validate the formulae of the switching time and the expectation.  \\~
+
+{\blue
+\noindent Solution: \\
+a) Consider a two-state Markov jump process with states $X = \{1, 2\}$ and switching rate $\nu$ for going from state 1 to 2 and $\mu$ for going from state 2 to 1. Now, to prove the formulae for switching times $T_1$ and $T_2$, we need to derive the probability density function for each. Given $s,t \ge 0$, we have
+\begin{align*}
+  P\{T_1 > s+t\;|\; T_1 > s\} &= P\{X(m) = 1\; \forall m \in [0, s+t]\; |\; X(m) = 1\; \forall m \in [0, s]\}\\
+  &= P\{X(m) = 1\; \forall m \in [s, s+t]\; |\; X(s) = 1\} \tag{Markov property}\\
+  &= P\{X(m) = 1\; \forall m \in [0, t]\;|\; X(0) = 1\} \tag{Time Homogenity}\\
+  &= P\{T_1 > t\}.
+\end{align*}
+We can show the same for $T_2$. Importantly, $T_x\; \forall x \in \{1,2\}$ follows a distribution that has a memory-loss property. This means that the probability of the next jump is independent of the time that has passed since the last jump. In the continuous time case, this means that $T_x$ follows an exponential distribution with rate $\mu$ for $x = 1$ and $\nu$ for $x = 2$. Therefore:
+\begin{align*}
+  P\{T_1 \leq t\} &= 1 - e^{-\nu t},\\
+  P\{T_2 \leq t\} &= 1 - e^{-\mu t}.
+\end{align*}
+Note, the $1$ minus arises from the change from $>$ to $\leq$. \\
+
+Now to prove the formula for the expectation $E[X]$, notice that since $T_1$ which is the time spent in state 1 is exponentially distributed with rate $\nu$, the expected time spent in state 1 is given by $E[T_1] = \frac{1}{\nu}$. Similarly, $E[T_2] = \frac{1}{\mu}$. Therefore, the  ``probability'' of being in state 1 is given by $\frac{E[T_1]}{E[T_1] + E[T_2]} = \frac{\mu}{\mu + \nu}$. Similarly, the ``probability'' of being in state 2 is given by $\frac{\nu}{\mu + \nu}$. Therefore, the expectation is given by:
+\begin{equation*}
+  E[X] = \frac{\mu}{\mu + \nu} \cdot 1 + \frac{\nu}{\mu + \nu} \cdot 2.
+\end{equation*}
+
+b) See code attached. This is the output it produces
+\begin{verbatim}
+  Let state 1 be 1 and state 2 be 2
+  Let \nu = 0.2 be the rate of switching from state 1 to state 2 and
+  \mu = 0.5 be the rate of switching from state 2 to state 1
+  Emperical probability of being in state 1: 0.7129576497361925
+  Analytical probability of being in state 1: 0.7142857142857143
+  Emperical probability of being in state 2: 0.2870423502638063
+  Analytical probability of being in state 2: 0.28571428571428575
+  Emperical expected value: 1.287042350263805
+  Analytical expected value: 1.2857142857142858
+\end{verbatim}
+}
+
+\noindent 3. Write down the time evolution equations of the mean and variance of the complex OU process
+\begin{equation*}
+    dx_t = ((-a+i\omega)x_t + f)dt + \sigma dW_t.
+\end{equation*}
+Start from an arbitrary initial condition, plot the time evolutions of the mean and variance (you choose the model parameters).
+
+{\blue
+\noindent Solution: \\
+The time evolution differential equations for the mean and variance of the complex OU process are given by:
+\begin{align*}
+  d\innp{x_t} = \left((-a+i\omega)\innp{x_t} + f\right)dt,\\
+  d\innp{{x_t'^2}} = \left(-2(a + i\omega)\innp{x_t'^2} + \sigma^2 \right)dt
+\end{align*}
+Solving these ODEs, we get the time evolution of the mean and variance as:
+\begin{align*}
+  \innp{x_t} &= \innp{x_0}e^{(-a+i\omega)t} + \frac{f}{a - i\omega}(1 - e^{(-a+i\omega)t}),\\
+  \innp{x_t'^2} &= \innp{x_0'^2}e^{-2(a+i\omega)t} + \frac{\sigma^2}{2(a+i\omega)}(1 - e^{-2(a+i\omega)t}).
+\end{align*}
+
+The plot for the time evolution of the mean and variance is shown below. The parameters chosen are $a = 1.$, $\omega = 0.5$, $f = 0.1 + i0.1$, $x_0 = 1 + i1$ and $x_0'^2 = 2 + i2$. The time interval is $[0, 5]$.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.\textwidth]{../3.png}
+  \caption{Time evolution of the mean and variance}
+\end{figure}
+
+}
+
+\end{document}
