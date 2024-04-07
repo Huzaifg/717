@@ -1,0 +1,25 @@
+# --- Python ---
+__pycache__/  # Ignore Python bytecode
+*.pyc         # Ignore individual compiled Python files
+*.pyo         # Ignore old, optimized Python compiled files
+*.pyd         # Ignore Python extension modules 
+venv/         # Ignore virtual environments (adjust name if different)
+
+# --- TeX ---
+*.aux  
+*.log  
+*.out  
+*.toc
+*.lof  
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# --- Other Common Ignores ---
+*.swp         # Ignore Vim swap files
+.DS_Store     # Ignore macOS-specific metadata
+
+# --- Optional (depending on project and preferences) ---
+build/        # Build artifacts
+dist/         # Distribution packages

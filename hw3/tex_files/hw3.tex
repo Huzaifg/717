@@ -1,0 +1,223 @@
+\documentclass[a4paper,notitlepage,cs4size,cap,indent,oneside,12pt]{article}
+\usepackage{graphicx,afterpage}
+%\usepackage[pdf]{pstricks}
+\usepackage{bm}\usepackage{soul}
+\usepackage{empheq}\usepackage{mathtools}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{mathrsfs,color}
+\usepackage{amsfonts}\usepackage{multirow}
+\usepackage{amssymb}\usepackage{caption,comment}
+\usepackage{amsmath}\usepackage{float}
+\usepackage{amssymb,amsthm}
+\usepackage{graphicx,afterpage,cancel}
+\usepackage{epstopdf}
+\newcommand{\rmd}{\mathrm{d}}
+\newcommand{\rmi}{\mathrm{i}}
+\DeclareMathOperator*{\argmax}{argmax}
+%\usepackage[dvipdfm,colorlinks,linkcolor=blue,citecolor=blue]{hyperref}
+\def\Xint#1{\mathchoice
+{\XXint\displaystyle\textstyle{#1}}%
+{\XXint\textstyle\scriptstyle{#1}}%
+{\XXint\scriptstyle\scriptscriptstyle{#1}}%
+{\XXint\scriptscriptstyle\scriptscriptstyle{#1}}%
+\!\int}
+\def\XXint#1#2#3{{\setbox0=\hbox{$#1{#2#3}{\int}$ }
+\vcenter{\hbox{$#2#3$ }}\kern-.6\wd0}}
+\def\ddashint{\Xint=}
+\def\dashint{\Xint-}
+%% New packages
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\usepackage[pdftex,colorlinks=true]{hyperref}
+%\usepackage[dvipdfm,colorlinks]{hyperref}
+\hypersetup{CJKbookmarks,%
+bookmarksnumbered,%
+colorlinks,%
+linkcolor=black,%
+citecolor=black,%
+plainpages=false,%
+pdfstartview=FitH}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\def\theequation{\arabic{section}.\arabic{equation}}
+\newcommand\tabcaption{\def\@captype{table}\caption}
+\def\thefigure{\arabic{section}.\arabic{figure}}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{corollary}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{opro}[thm]{Open problem}
+\newtheorem{aspt}[thm]{Assumption}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{example}[thm]{Example}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{assumption}[theorem]{Assumption}
+\renewcommand{\abstractname}{Summary}
+\definecolor{orange}{RGB}{255,127,0}
+\newcommand{\orange}{\color{orange}}
+\newcommand{\blue}{\color{blue}}
+\newcommand{\red}{\color{red}}
+\newcommand{\green}{\color{green}}
+\newcommand{\magenta}{\color{magenta}}
+\newcommand{\e}{\varepsilon}
+\newcommand{\cov}{\mbox{cov}}\def\d{{\, \rm d}}
+\newcommand{\smallersize}{\fontsize{8pt}{11pt}\selectfont}
+
+
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\innp}[1]{\left\langle #1 \right\rangle}
+\newcommand{\bdot}[1]{\mathbf{\dot{ #1 }}}
+\newcommand{\OPT}{\operatorname{OPT}}
+\newcommand{\mA}{\mathbf{A}}
+\newcommand{\mP}{\mathbf{P}}
+\newcommand{\mLambda}{\mathbf{\Lambda}}
+\newcommand{\ones}{\mathds{1}}
+\newcommand{\zeros}{\textbf{0}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vp}{\mathbf{p}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\cx}{\mathcal{X}}
+\newcommand{\cy}{\mathcal{Y}}
+\newcommand{\cc}{\mathcal{C}}
+\newcommand{\cz}{\mathcal{Z}}
+\newcommand{\vxh}{\mathbf{\hat{x}}}
+\newcommand{\vyh}{\mathbf{\hat{y}}}
+\newcommand{\vzh}{\mathbf{\hat{z}}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vA}{\mathbf{A}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vvh}{\mathbf{\hat{v}}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vg}{\mathbf{g}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vub}{\overline{\mathbf{u}}}
+\newcommand{\vuh}{\hat{\mathbf{u}}}
+\newcommand{\veta}{\bm{\eta}}
+\newcommand{\vetah}{\bm{\hat{\eta}}}
+\newcommand{\defeq}{\stackrel{\mathrm{\scriptscriptstyle def}}{=}}
+\newcommand{\etal}{\textit{et al}.}
+\newcommand{\tnabla}{\widetilde{\nabla}}
+\newcommand{\tE}{\widetilde{E}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}} 
+\newcommand{\inner}[2]{\langle#1,#2\rangle}
+
+\afterpage{\clearpage}
+% images used in this paper are: ccpfdomain.jpg and sd_domain.jpg
+
+\title{Math 717 Homework \#3}
+\author{}
+\date{}
+\begin{document}
+\maketitle%\tableofcontents
+%\abstract{}
+Due date: Monday, April 8th, 23:59pm.\medskip
+
+\noindent  Consider a two-dimensional linear model:
+\begin{equation*}
+\begin{split}
+    \frac{\d u_1}{\d t} &= F_{11}u_1 + F_{12}u_2 +\sigma_1\dot{W}_{1}\\
+    \frac{\d u_2}{\d t} &= F_{21}u_1 + F_{22}u_2 +\sigma_2\dot{W}_{2}
+\end{split}
+\end{equation*}
+where $u_1$ and $u_2$ are the scalar state variables, and $\dot{W}_{1}$ and $\dot{W}_{2}$ are independent white noise sources. The coefficients  $F_{11}, F_{12}, F_{21}$, $F_{22}$, $\sigma_1$ and $\sigma_2$ are all constants.\\
+a) Which condition $F_{11}, F_{12}, F_{21}$ and $F_{22}$ should be satisfied such that the equilibrium distribution of the system exists?\\
+b) Let $F_{11} = F_{22} = -1$, $F_{12} = 0.5$, $F_{21}=-0.5$, $\sigma_1 = 0.2$ and $\sigma_2 = 0.5$. Start from the initial condition $x_1(0)=x_2(0) = 0.5$. Generate a time series that has in total 100 time units. \\
+c) The observational equation is given by
+\begin{equation*}
+\begin{split}
+    v_1 &= g_{1}u_1 +\sigma^{o}_1,\\
+    v_2 &= g_{2}u_2 +\sigma^{o}_2,
+\end{split}
+\end{equation*}
+where $\sigma^o_1$ and $\sigma^o_2$ are independent zero mean Gaussian random numbers at each observational time instant. If $g_1 = g_2 = 2$ and $\mbox{std}(\sigma^o_1)=\mbox{std}(\sigma^o_2)=0.2$ and the observational time step is $\Delta{t}=0.25$, then write a code for the Kalman filter, where the true signal comes from the result in Part b). Plot the posterior mean and the posterior variance of both $v_1$ and $v_2$, comparing them with the prior mean and prior variance. You may compute the root-mean-square error between the true signal and the posterior/prior mean time series. You may also compute the pattern correlation between the true signal and the posterior/prior mean time series.\\
+d) Similar to Part c) but if $g_2=0$ is used while other setups remain the same, then what's the result of the Kalman filter? \\
+e) Use the same setup as Part d) except changing  $F_{12} = 0.1$ and $F_{21} = -0.1$. Then what's the result of the Kalman filter? Compare the prior distribution and posterior distribution in this case and the case in Part d) to explain the role of $F_{12}$ and $F_{21}$ in the  Kalman filter.\\~\\
+
+\noindent Attach your codes together with your answers.
+
+{\blue
+\noindent Solution: \\
+a) This would be the Lyapunov stability condition for linear systems driven by white noise. This condition requires the Eigenvalues of the matrix $F$ to have negative real parts. This reduces to the condition that the trace of the matrix $F$ is negative and the determinant of the matrix $F$ is positive. \\
+Thus the condition would be $F_{11} + F_{22} < 0$ and $F_{11}F_{22} - F_{12}F_{21} > 0$.\\
+b)The system of equations with plugged in constants is:
+\begin{equation*}
+    \begin{split}
+        \frac{\d u_1}{\d t} &= -u_1 + 0.5u_2 + 0.2\dot{W}_1\\
+        \frac{\d u_2}{\d t} &= -0.5u_1 - u_2 + 0.5\dot{W}_2
+    \end{split}
+\end{equation*}
+Using the Euler-Maruyama update scheme, this reduces in discrete time to:
+\begin{align*}
+    u_1(t+\Delta{t}) &= u_1(t) - u_1(t)\Delta{t} + 0.5u_2(t)\Delta{t} + 0.2\sqrt{\Delta{t}}\mathcal{N}(0,1)\\
+    u_2(t+\Delta{t}) &= u_2(t) - 0.5u_1(t)\Delta{t} - u_2(t)\Delta{t} + 0.5\sqrt{\Delta{t}}\mathcal{N}(0,1)
+\end{align*}
+See code in \textit{b.py}. For time series see Fig.~\ref{fig:b}.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../b.png}
+    \caption{Simulated system for part b}
+    \label{fig:b}
+\end{figure}
+c) Used the true system model as the internal model for the Kalman filter for the predictions.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../c.png}
+    \caption{Kalman filter for part c}
+    \label{fig:c}
+\end{figure}
+\begin{verbatim}
+    RMSE for u1: 0.0777439158622588, RMSE for u2: 0.09425731006778841
+    Pattern Correlation for u1: 0.886, Pattern Correlation for u2: 0.958
+\end{verbatim}
+As you can see, the prior prediction is very strong because we use the true underlying model for the predictions. To play around, I changed the prediction model by changing the F matrix to 
+\begin{verbatim}
+    F11, F22 = -5, -5
+    F12, F21 = 0.9, -0.8
+\end{verbatim}
+$F_{12} = 0.1$ and $F_{21} = -0.1$. The results are shown in Fig.~\ref{fig:c_mod} and the RMSE and Pattern Correlation are:
+\begin{verbatim}
+    RMSE for u1: 0.10204210785978672, RMSE for u2: 0.10587416438261896
+    Pattern Correlation for u1: 0.858, Pattern Correlation for u2: 0.954
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../c_mod.png}
+    \caption{Kalman filter for part c but with modified prediction model}
+    \label{fig:c_mod}
+\end{figure}
+d) The posterior distribution for $v_2$ is very wide because the observation model is not very informative. The posterior distribution for $v_1$ is very narrow because the observation model is very informative.\\
+\begin{verbatim}
+    RMSE for u1: 0.08081461698007304, RMSE for u2: 0.3322996541524149
+    Pattern Correlation for u1: 0.911, Pattern Correlation for u2: -0.012
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../d.png}
+    \caption{Kalman filter for d. Wide posterior for $u_2$ when setting $g_2=0$} 
+    \label{fig:d}
+\end{figure}
+e) The posterior distribution for $u_2$ is still very wide because the observation model is not very informative. The role of $F_{12}$ and $F_{21}$ is to make the prediction model more informative and closer to the underlying ground truth dynamics. \\
+\begin{verbatim}
+    RMSE for u1: 0.07884267525673058, RMSE for u2: 0.3186142682553193
+    Pattern Correlation for u1: 0.892, Pattern Correlation for u2: 0.118
+\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../e.png}
+    \caption{Kalman filter for e. Wide posterior for $u_2$ when setting $F_{12} = 0.1$ and $F_{21} = -0.1$} 
+    \label{fig:e}
+\end{figure}
+}
+\end{document}
