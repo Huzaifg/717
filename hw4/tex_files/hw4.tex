@@ -1,0 +1,227 @@
+\documentclass[a4paper,notitlepage,cs4size,cap,indent,oneside,12pt]{article}
+\usepackage{graphicx,afterpage}
+%\usepackage[pdf]{pstricks}
+\usepackage{bm}\usepackage{soul}
+\usepackage{empheq}\usepackage{mathtools}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{mathrsfs,color}
+\usepackage{amsfonts}\usepackage{multirow}
+\usepackage{amssymb}\usepackage{caption,comment}
+\usepackage{amsmath}\usepackage{float}
+\usepackage{amssymb,amsthm}
+\usepackage{graphicx,afterpage,cancel}
+\usepackage{epstopdf}
+\newcommand{\rmd}{\mathrm{d}}
+\newcommand{\rmi}{\mathrm{i}}
+\DeclareMathOperator*{\argmax}{argmax}
+%\usepackage[dvipdfm,colorlinks,linkcolor=blue,citecolor=blue]{hyperref}
+\def\Xint#1{\mathchoice
+{\XXint\displaystyle\textstyle{#1}}%
+{\XXint\textstyle\scriptstyle{#1}}%
+{\XXint\scriptstyle\scriptscriptstyle{#1}}%
+{\XXint\scriptscriptstyle\scriptscriptstyle{#1}}%
+\!\int}
+\def\XXint#1#2#3{{\setbox0=\hbox{$#1{#2#3}{\int}$ }
+\vcenter{\hbox{$#2#3$ }}\kern-.6\wd0}}
+\def\ddashint{\Xint=}
+\def\dashint{\Xint-}
+%% New packages
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{subfig}
+
+\usepackage[pdftex,colorlinks=true]{hyperref}
+%\usepackage[dvipdfm,colorlinks]{hyperref}
+\hypersetup{CJKbookmarks,%
+bookmarksnumbered,%
+colorlinks,%
+linkcolor=black,%
+citecolor=black,%
+plainpages=false,%
+pdfstartview=FitH}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\def\theequation{\arabic{section}.\arabic{equation}}
+\newcommand\tabcaption{\def\@captype{table}\caption}
+\def\thefigure{\arabic{section}.\arabic{figure}}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{corollary}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{opro}[thm]{Open problem}
+\newtheorem{aspt}[thm]{Assumption}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{example}[thm]{Example}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{assumption}[theorem]{Assumption}
+\renewcommand{\abstractname}{Summary}
+\definecolor{orange}{RGB}{255,127,0}
+\newcommand{\orange}{\color{orange}}
+\newcommand{\blue}{\color{blue}}
+\newcommand{\red}{\color{red}}
+\newcommand{\green}{\color{green}}
+\newcommand{\magenta}{\color{magenta}}
+\newcommand{\e}{\varepsilon}
+\newcommand{\cov}{\mbox{cov}}\def\d{{\, \rm d}}
+\newcommand{\smallersize}{\fontsize{8pt}{11pt}\selectfont}
+
+
+
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\innp}[1]{\left\langle #1 \right\rangle}
+\newcommand{\bdot}[1]{\mathbf{\dot{ #1 }}}
+\newcommand{\OPT}{\operatorname{OPT}}
+\newcommand{\mA}{\mathbf{A}}
+\newcommand{\mP}{\mathbf{P}}
+\newcommand{\mLambda}{\mathbf{\Lambda}}
+\newcommand{\ones}{\mathds{1}}
+\newcommand{\zeros}{\textbf{0}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vp}{\mathbf{p}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\cx}{\mathcal{X}}
+\newcommand{\cy}{\mathcal{Y}}
+\newcommand{\cc}{\mathcal{C}}
+\newcommand{\cz}{\mathcal{Z}}
+\newcommand{\vxh}{\mathbf{\hat{x}}}
+\newcommand{\vyh}{\mathbf{\hat{y}}}
+\newcommand{\vzh}{\mathbf{\hat{z}}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vA}{\mathbf{A}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vvh}{\mathbf{\hat{v}}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vg}{\mathbf{g}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vub}{\overline{\mathbf{u}}}
+\newcommand{\vuh}{\hat{\mathbf{u}}}
+\newcommand{\veta}{\bm{\eta}}
+\newcommand{\vetah}{\bm{\hat{\eta}}}
+\newcommand{\defeq}{\stackrel{\mathrm{\scriptscriptstyle def}}{=}}
+\newcommand{\etal}{\textit{et al}.}
+\newcommand{\tnabla}{\widetilde{\nabla}}
+\newcommand{\tE}{\widetilde{E}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}} 
+\newcommand{\inner}[2]{\langle#1,#2\rangle}
+
+\afterpage{\clearpage}
+% images used in this paper are: ccpfdomain.jpg and sd_domain.jpg
+
+\title{Math 717 Homework \#4}
+\author{}
+\date{}
+\begin{document}
+\maketitle%\tableofcontents
+%\abstract{}
+Due date: Monday, April 22nd, 23:59pm.\medskip
+
+\noindent  1. Consider a linear SDE with multiplicative noise. If our target distribution is the uniform distribution
+\begin{equation*}
+p(x) = \frac{1}{c-b},\qquad b<x<c,
+\end{equation*}
+then derive the multiplicative noise in the corresponding SDE has the following form:
+\begin{equation*}
+\d x(t) = -\lambda \left(x(t) - \frac{b+c}{2}\right)\d t + \sqrt{\lambda (x-b)(c-x)}\d W(t)
+\end{equation*}
+Run a numerical simulation to verify that the above SDE does provide a uniform distribution at the statistical equilibrium. Attach your code.\medskip\medskip \\
+{\blue
+\noindent Solutions: \\
+For a one-dimensional SDE with multiplicative noise:
+$$dx(t) = a(x(t))dt + b(x(t))dW(t)$$
+the corresponding Fokker-Planck equation is:
+$$\frac{\partial p(x,t)}{\partial t} = -\frac{\partial}{\partial x}[a(x)p(x,t)] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[b^2(x)p(x,t)]$$
+At the stationary state, $\frac{\partial p(x,t)}{\partial t} = 0$, and the equation simplifies to:
+$$0 = -\frac{d}{dx}[a(x)p(x)] + \frac{1}{2}\frac{d^2}{dx^2}[b^2(x)p(x)]$$
+We want to find the drift term $a(x)$ and the diffusion term $b(x)$ such that the stationary solution $p(x)$ is the uniform distribution:
+$$p(x) = \frac{1}{c-b}, \quad b < x < c$$
+Substituting this into the stationary Fokker-Planck equation, we get:
+$$0 = -\frac{d}{dx}\left[a(x)\frac{1}{c-b}\right] + \frac{1}{2}\frac{d^2}{dx^2}\left[b^2(x)\frac{1}{c-b}\right]$$
+Integrating both sides with respect to $x$, we obtain:
+$$a(x) = -\lambda(x - (b+c)/2)$$
+$$b^2(x) = 2\lambda(x-b)(c-x)$$
+where $\lambda$ is an arbitrary constant.
+Therefore, the SDE with multiplicative noise that has a uniform distribution as the stationary solution is:
+$$dx(t) = -\lambda\left(x(t) - \frac{b+c}{2}\right)dt + \sqrt{2\lambda(x(t)-b)(c-x(t))}dW(t)$$
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../1.png}
+  \caption{Histogram of the stationary distribution of the SDE with multiplicative noise.}
+  \label{fig:hist}
+\end{figure}
+}
+
+\noindent 2. Consider the following SDE
+\begin{equation*}
+\begin{split}
+    d{u} &= (-{\gamma} + i{\omega}){u} dt + \sigma_u dW_u,\\
+    d{\gamma} &= -d_\gamma ({\gamma}-\hat{\gamma}) dt + \sigma_\gamma dW_\gamma.
+\end{split}
+\end{equation*}
+Choose three sets of parameters, corresponding to three dynamical regimes, such that
+\begin{enumerate}
+  \item [a)] A regime of plentiful, short-lasting transient intermittent instabilities in the resolved component $u(t)$ with a fat-tailed marginal equilibrium PDF.
+  \item [b)] A regime of intermittent large-amplitude bursts of instability in $u(t)$ with a fat-tailed marginal equilibrium PDF.
+  \item [c)] A `stable' regime with a nearly Gaussian equilibrium PDF of $u(t)$.
+\end{enumerate}
+Please also provide the general principle of the parameter choices to reach each of the above three regimes.\medskip\medskip
+
+
+{\blue
+\noindent Solutions: \\
+\begin{enumerate}
+  \item [a)] To achieve a regime of plentiful, short-lasting transient intermittent instabilities in the resolved component $u(t)$ with a fat-tailed marginal equilibrium PDF we need high variability in $\gamma$ with frequenct switches between postiive and negative, causing transient instabilities in u. Thus we choose parameters 1) $\hat{\gamma}$ near zero - this allows $\gamma$ to frequenty cross zero. 2) High $\sigma_{\gamma}$ - increases the probability of $\gamma$ switching signs 3) Moderate $d_{\gamma}$ - Allows for enough variability without quick stabilization, 4) High $\sigma_u$ - increases the variability in $u$ and 5) High $\omega$ - increases the frequency of oscillations in $u$.
+  \item [b)] Now we need less frequent but larger deviations in u. We choose 1) $\hat{\gamma}$ small and negative - To allow for growth phases in u leading to bursts, 2) Moderate $\sigma_{\gamma}$ - enough to allow significant shifts but not so high as to make them commonplace, 3) Low $d_{\gamma}$ - slower reversion gives time for u to grow, 4) High $\sigma_u$ - to amplify bursts when they occur.
+  \item [c)] Stabilize u to a predictable behavior with minimal extreme events. This is achieved by 1) positive $\hat{\gamma}$ - strong damping to keep u stable, 2) Low $\sigma_{\gamma}$ - minimal variability in $\gamma$, 3) High $d_{\gamma}$ - strong reversion to $\hat{\gamma}$, 4) Low $\sigma_u$ - minimal variability in u, 5) Low $\omega$ - minimal oscillations in u.
+\end{enumerate}
+
+}
+\noindent 3. Consider the following 1-dimensional real-valued SDE
+\begin{equation*}
+du = (-au + f)dt + \sigma dW_u
+\end{equation*}
+with $a=f=1$ and $\sigma=0.5$. Assume the observations are available at every $\Delta{t} = 0.25$ and the total length of the observation is $100$ units. The observational noise is a mean-zero Gaussian distribution with variance being $0.01$. \\
+a) Generate a time series and the discrete observations.\\
+b) Now assume the parameters $a$ and $\sigma$ are known but $f$ is unknown. Use the above time series and the standard Kalman filter to estimate the parameter $f$. Here you may augment the system by adding another equation $df/dt = 0$ and assume the initial value of $f$ satisfies a Gaussian distribution with zero mean and a certain value of variance.\\
+c) If you increase or decrease $\Delta{t}$, how is your parameter estimation skill change? Use numerical simulations to validate your conclusion.
+
+{\blue
+\noindent Solutions: \\
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../3a.png}
+  \caption{Time series and discrete observations of the SDE.}
+  \label{fig:3a}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../3b.png}
+  \caption{Estimation of f with a Kalman Filter}
+  \label{fig:3b}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \subfloat[Delta T = 0.1]{\includegraphics[width=0.48\textwidth]{../3c_delta_t_0.1.png}\label{fig:subfig1}}
+  \hfill
+  \subfloat[Delta T = 0.01]{\includegraphics[width=0.48\textwidth]{../3c_delta_t_0.01.png}\label{fig:subfig2}}
+  \hfill
+  \subfloat[Delta T = 1]{\includegraphics[width=0.48\textwidth]{../3c_delta_t_1.0.png}\label{fig:subfig3}}
+  \caption{As we can see, as the time step increases, the estimation of f becomes less accurate and less stable}
+  \label{fig:fig3}
+\end{figure}
+}
+\end{document}
